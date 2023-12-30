@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken')
 const registerManager = require('../source/models/register')
 
+//apply changes in git 
+
 const auth = (req,res,next)=>{
     try {
      const token = req.cookies.jwt
