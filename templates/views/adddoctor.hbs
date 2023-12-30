@@ -1,0 +1,104 @@
+{{>bootstraphead}}
+  <body>
+    <div class="main">
+        <div class="layout">
+          <div class="sidebar">
+            <div class="logo">
+              <h6 class="text-light">DOC APP</h6>
+              <hr />
+            </div>
+            <div class="menu">
+             
+                {{>adminsidebar}}
+            
+            </div>
+          </div>
+          <div class="content">
+            <div class="header">
+              <div class="header-content">
+                 
+
+                <a href="/profile">{{email}}</a>
+              </div>
+            </div>
+            <div class="body">
+           
+ <h2 class="page-title">Add a Doctor</h2>
+       
+    <a class="btn btn-primary" href="/admin/doctor">Back to Doctor Page</a>
+    <br><br>
+
+    <form action="/adddoctor" method="post">
+       <br>
+           <div class="form-group">
+           <label for="">First Name</label>
+           <input class="form-control" type="text" name="firstname" value="" placeholder="First Name">
+           </div>
+         <br>
+          <div class="form-group">
+           <label for="">Last Name</label>
+           <input class="form-control" type="text" name="lastname" value="" placeholder="Last Name">
+           </div>
+         <br>
+          <div class="form-group">
+           <label for="">Email</label>
+           <input class="form-control" type="text" name="email" value="" placeholder="Enter Email">
+           </div>
+         <br>
+          <div class="form-group">
+           <label for="">Phone No</label>
+           <input class="form-control" type="text" name="phone" value="" placeholder="Enter Phone No">
+           </div>
+         <br>
+         <div class="form-group">
+           <label for="">Address</label>
+           <input class="form-control" type="text" name="address" value="" placeholder="Enter Your Adress">
+           </div>
+         <br>
+         <div class="form-group">
+            Gender:
+            <div class="maxl">
+                <label class="radio inline">
+                    <input type="radio" name="gender" value="Male">
+                    <span>Male</span>
+                </label>
+                <label class="radio inline">
+                    <input type="radio" name="gender" value="Female">
+                    <span>Female</span>
+                </label>
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+           <label for="">specialization</label>
+           <input class="form-control" type="text" name="specialization" value="" placeholder="Enter Specialization">
+           </div>
+         <br>
+          <div class="form-group">
+           <label for="">Experience</label>
+           <input class="form-control" type="text" name="experience" value="" placeholder="Enter experience">
+           </div>
+         <br>
+       <div class="form-group">
+           <label for="">Fees</label>
+           <input class="form-control" type="text" name="feesperconsultation" value="" placeholder="Enter Your Fees">
+       </div>
+      <br>
+       <div class="form-group">
+           <label for="">Descriptiont</label>
+           <textarea class="form-control" name="description" cols="10" rows="7">{{description}}</textarea>
+       </div>
+
+      
+       <br>
+       <button class="btn btn-primary">Submit</button>
+    </form>
+            </div>
+          </div>
+        </div>
+      </div>
+   
+    </body>
+  {{>bootstrapscripts}}
+  {{>sidebarstyle}}
+  </html>

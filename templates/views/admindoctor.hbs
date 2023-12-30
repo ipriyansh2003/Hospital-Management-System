@@ -1,0 +1,87 @@
+{{>bootstraphead}}
+  <body onload="myfunc()">
+
+    <div class="main">
+      <div class="layout">
+        <div class="sidebar">
+          <div class="logo">
+            <h6 class="text-light">DOC APP</h6>
+            <hr />
+          </div>
+          <div class="menu">
+           
+              {{>sidebar}}
+          
+          </div>
+        </div>
+        <div class="content">
+          <div class="header">
+            <div class="header-content">
+               
+
+              <a href="/profile">{{email}}</a>
+            </div>
+          </div>
+          <div class="body">
+
+            <h1>Doctor Page</h1>
+            <br>
+             <a href="/adddoctor" class="btn btn-primary">Add a Doctor</a>
+   <br><br>
+     
+     <table class="table table-striped">
+           <thead>
+              <tr>
+                <th>Name</th>
+                <th>email</th>
+                <th>Phone No</th>
+                <th>Image</th>
+                <th>Experties</th>
+                <th>Fees</th>
+                <th>Address</th>
+                <th>Delete</th>
+              </tr>
+           </thead>
+        <tbody id="tabledata">
+          
+           
+        </tbody>
+    </table>
+
+    
+          </div>
+
+        </div>
+      </div>
+    </div>
+   
+ </body>
+  {{>bootstrapscripts}}
+  <script>
+    const myfunc=async()=>{
+          
+          const tabledata = document.getElementById('tabledata')
+          let p = await fetch('http://localhost:9000/doctorapi')
+          let parsedata = await p.json()
+
+          let result = ''
+
+          for(let i = 0; i<parsedata.length;i++){
+           let id = parsedata[i]._id
+           let name = `${parsedata[i].firstname} ${parsedata[i].lastname}`
+            result+=`<tr>
+                <td>${name}</td>
+                <th>${parsedata[i].email}</th>
+                <th>${parsedata[i].phone}</th>
+                <th></th>
+                 <th>${parsedata[i].specialization}</th>
+                <th>${parsedata[i].feesperconsultation}</th>
+                <th>${parsedata[i].address}</th>
+                <td><form action='/delete-doctor/${id}' method='post'><button class='btn btn-danger'>Delete</button></form></td>
+            </tr>`
+          }
+          tabledata.innerHTML = result
+    }
+  </script>
+  {{>sidebarstyle}}
+  </html>

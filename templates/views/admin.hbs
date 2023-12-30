@@ -1,0 +1,79 @@
+{{>bootstraphead}}
+  <body onload="myfunc()">
+   <div class="main">
+        <div class="layout">
+          <div class="sidebar">
+            <div class="logo">
+              <h6 class="text-light">DOC APP</h6>
+              <hr />
+            </div>
+            <div class="menu">
+             
+                {{>adminsidebar}}
+            
+            </div>
+          </div>
+          <div class="content">
+            <div class="header">            
+              <div class="header-content">
+                
+                 
+
+                <a href="/profile">{{email}}</a>
+              </div>
+            </div>
+            <div class="body" id="container">
+
+          <h1>Booking Status</h1>
+          <br>
+            <table class="table table-striped">
+           <thead>
+              <tr>
+                <th>Doctor Name</th>
+                <th>Patient Name</th>
+                <th>Patient Phone No</th>
+                <th>Booking Date</th>
+                <th>Booking Status</th>
+                <th>status update</th>
+                <th>Delete</th>
+              </tr>
+           </thead>
+        <tbody id="tabledata">
+          
+           
+        </tbody>
+    </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+
+    <script>
+
+      const myfunc = async()=>{
+           const tabledata = document.getElementById('tabledata')
+      const p = await fetch(`http://localhost:9000/bookingapi`)
+      let parsedata = await p.json()
+      
+      let result = ''
+      for(let i=0;i<parsedata.length;i++)
+      {
+         let id = parsedata[i]._id
+          result+=`<tr>
+                <td>${parsedata[i].doctorname}</td>
+                <th>${parsedata[i].patient}</th>
+                <th>${parsedata[i].patientphoneno}</th>
+                <th>${parsedata[i].bookingdate}</th>
+                <th>${parsedata[i].bookingstatus}</th>
+                <td><form action='/approve-booking/${id}' method='post'><button class='btn btn-primary'>Approve</button></form><form action='/reject-booking/${id}' method='post'><button class='btn btn-danger'>Reject</button></form></td>
+                <td><form action='/delete-booking/${id}' method='post'><button class='btn btn-danger'>Delete</button></form></td>
+            </tr>`
+      }
+
+      tabledata.innerHTML=result
+      }
+    </script>
+{{>bootstrapscripts}}
+{{>sidebarstyle}}
+</html>

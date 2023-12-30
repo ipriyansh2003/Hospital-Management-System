@@ -1,0 +1,65 @@
+{{>bootstraphead}}
+  <body onload="myfunc('{{id1}}')">
+   <div class="main">
+        <div class="layout">
+          <div class="sidebar">
+            <div class="logo">
+              <h6 class="text-light">DOC APP</h6>
+              <hr />
+            </div>
+            <div class="menu">
+             
+                {{>sidebar}}
+            
+            </div>
+          </div>
+          <div class="content">
+            <div class="header">
+              <div class="header-content">
+                 
+
+                <a href="/profile">{{email}}</a>
+              </div>
+            </div>
+            <div class="body" id="container">
+           
+             
+            
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+   <script>
+
+    const myfunc= async(id)=>{
+      const container = document.getElementById('container')
+      const p = await fetch(`http://localhost:9000/doctorapi/${id}`)
+      let parsedata = await p.json()
+        
+      container.innerHTML=`
+      Doctor Name: ${parsedata[0].firstname} ${parsedata[0].lastname}
+      <br>
+      Doctor email : ${parsedata[0].email}
+      <br>
+      Doctor phoneNo : ${parsedata[0].phone}
+      <br>
+      Doctor fees : ${parsedata[0].feesperconsultation}
+      <br>
+      Doctor description : ${parsedata[0].description}
+      <br>
+       <form action="/booking/${parsedata[0]._id}" method="post">
+             <div>
+             <label for="dateforbooking"> Date for booking :</label>
+              <input type="date" id="dateforbooking" name="bookingdate">
+             </div>
+             <br>
+             <button class="btn btn-primary">Book</button>
+             </form>
+      `    
+    }
+   </script>
+{{>bootstrapscripts}}
+{{>sidebarstyle}}
+</html>

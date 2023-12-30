@@ -1,0 +1,71 @@
+{{>bootstraphead}}
+  <body onload="myfunc()">
+   <div class="main">
+        <div class="layout">
+          <div class="sidebar">
+            <div class="logo">
+              <h6 class="text-light">DOC APP</h6>
+              <hr />
+            </div>
+            <div class="menu">
+             
+                {{>sidebar}}
+            
+            </div>
+          </div>
+          <div class="content">
+            <div class="header">
+              <div class="header-content">
+                 
+
+                <a href="/profile">{{email}}</a>
+              </div>
+            </div>
+            <div class="body">
+              <br>
+              <div class="container">
+                 <div class="row"  id="doctordata">
+                  
+                 </div>
+              </div>
+             <br>
+
+             <b>{{bookingstatus}}</b>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+    <script>
+  const myfunc=async()=>{
+          
+          const doctordata = document.getElementById('doctordata')
+          let p = await fetch('http://localhost:9000/doctorapi')
+          let parsedata = await p.json()
+
+          let result = ''
+
+          for(let i = 0; i<parsedata.length;i++){
+           let id = parsedata[i]._id
+           let name = `${parsedata[i].firstname} ${parsedata[i].lastname}`
+            result+=`
+            <div  class="card mb-4 box-shadow" style="width: 18rem;">
+  <img class="card-img-top" src="" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">${name}</h5>
+    <p>${parsedata[i].experience} Years</p>
+    <p>Fees: ${parsedata[i].feesperconsultation} Rs</p>
+    <p>Specialization: ${parsedata[i].specialization}</p>
+    <p class="card-text">Description:${parsedata[i].description}</p>
+    <a href="/booking/${parsedata[i]._id}" class="btn btn-primary">Booking</a>
+  </div>
+</div>`
+          }
+          doctordata.innerHTML = result
+    }
+      
+    </script>
+{{>bootstrapscripts}}
+{{>sidebarstyle}}
+</html>

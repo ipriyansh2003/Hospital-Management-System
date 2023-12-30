@@ -1,0 +1,24 @@
+{{>bootstraphead}}
+  <body>
+   <h1>Login Page</h1>
+   <br>
+   <form action="/login" method="post">
+   
+   <div class="login-form">
+          <div class="form-group">
+               <input type="email" class="form-control" placeholder="Your Email *" value="" name="email" required>
+          </div>
+
+   <br>
+         <div class="form-group">
+               <input type="password" class="form-control" placeholder="Enter Password *" value="" name="password" required>
+          </div>
+       
+        <br>
+        <a href="/register">Register Here</a>
+        <input type="submit" class="btnLogin" value="Login">
+       </div>
+   </form>
+ </body>
+  {{>bootstrapscripts}}
+  </html>

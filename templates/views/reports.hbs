@@ -1,0 +1,41 @@
+{{>bootstraphead}}
+  <body>
+
+    <div class="main">
+      <div class="layout">
+        <div class="sidebar">
+          <div class="logo">
+            <h6 class="text-light">DOC APP</h6>
+            <hr />
+          </div>
+          <div class="menu">
+           
+              {{>sidebar}}
+          
+          </div>
+        </div>
+        <div class="content">
+          <div class="header">
+            <div class="header-content">
+               
+
+              <a href="/profile">{{email}}</a>
+            </div>
+          </div>
+          <div class="body">
+
+            <h1>Reports Page</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="profileimage">
+      <button type="submit">Upload</button>
+    </form>
+    
+          </div>
+        </div>
+      </div>
+    </div>
+   
+ </body>
+  {{>bootstrapscripts}}
+  {{>sidebarstyle}}
+  </html>

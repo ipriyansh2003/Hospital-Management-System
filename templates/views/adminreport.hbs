@@ -1,0 +1,88 @@
+{{>bootstraphead}}
+  <body onload="myfunc1('{{id}}')">
+     <div class="main">
+        <div class="layout">
+          <div class="sidebar">
+            <div class="logo">
+              <h6 class="text-light">DOC APP</h6>
+              <hr />
+            </div>
+            <div class="menu">
+             
+                {{>adminsidebar}}
+            
+            </div>
+          </div>
+          <div class="content">
+            <div class="header">
+              <div class="header-content">
+                 
+
+                <a href="/profile">{{email}}</a>
+              </div>
+            </div>
+            <div class="body">
+              <h1>Admin Reports Page</h1>
+   
+   
+    <div id="viewreports">
+   
+   </div>
+   <div id="image" style="align-items: center;justify-content:center">
+   
+   </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+  
+   
+ </body>
+ <script>
+    const myfunc1 = async(id1)=>{
+      console.log(id1)
+         const reports = document.getElementById('viewreports')
+         let p = await fetch(`http://localhost:9000/reportapi/${id1}`)
+        let parsedata = await p.json()
+          
+        let results = ''
+        for(let i=0;i<parsedata.length;i++){
+           let id = parsedata[i]._id
+           results+=` <button onclick="myfunc(${i},'${id1}')">view report</button>
+           <form action="/delete/${id}" method="post">
+           <button class="btn btn-danger">Delete Report</button>
+           </form>
+           <br>
+           <br>
+           `
+           
+        }
+      reports.innerHTML=results
+    }
+    const myfunc=async(num,id1)=>{
+      console.log(id1)
+      console.log(num)
+        img = document.getElementById('image')
+        let p = await fetch(`http://localhost:9000/reportapi/${id1}`)
+        let parsedata = await p.json()
+
+        let result = `<a href="/${parsedata[num].reportfilepath}" >
+        <img src="/${parsedata[num].reportfilepath}" alt="" width="400px" height="500"></a>
+        <br>
+        <button class='btn btn-primary'><a href="/admin/report">Show Less</a></button>
+        `
+        img.innerHTML = result
+    }
+  </script>
+  {{>bootstrapscripts}}
+  
+  <style>
+    button a{
+        text-decoration: none;
+        color: aliceblue;
+    }
+  </style>
+  {{>sidebarstyle}}
+
+  </html>

@@ -1,0 +1,63 @@
+{{>bootstraphead}}
+  <body>
+   <h1>Registration Page</h1>
+   <br>
+   <form action="/register" method="post">
+   
+   <div class="row-register form">
+       <div class="col-md-6">
+<br>
+          <div class="form-group">
+               <input type="text" class="form-control" placeholder="First Name *" value="" name="firstname" required>
+          </div>
+          <br>
+           <div class="form-group">
+               <input type="text" class="form-control" placeholder="Last Name *" value="" name="lastname" required>
+          </div>
+        <br>  
+          <div class="form-group">
+               <input type="email" class="form-control" placeholder="Your Email *" value="" name="email" required>
+          </div>
+<br>
+          <div class="form-group">
+               <input type="text" class="form-control" minlength="10" maxlength="10" placeholder="Enter Your Phone *" value="" name="phone" required>
+          </div>
+   <br>
+         <div class="form-group">
+               <input type="password" class="form-control" placeholder="Enter Password *" value="" name="password" required>
+          </div>
+          <br>
+       </div>
+       <div class="col-md-6">
+        
+           <div class="form-group">
+            <div class="maxl">
+                <label class="radio inline">
+                    <input type="radio" name="gender" value="Male">
+                    <span>Male</span>
+                </label>
+                <label class="radio inline">
+                    <input type="radio" name="gender" value="Female">
+                    <span>Female</span>
+                </label>
+            </div>
+          </div>
+     <br>
+          <div class="form-group">
+               <input type="text" class="form-control" placeholder="Enter Your Age *" value="" name="age" >
+          </div>
+          <br>
+
+         <div class="form-group">
+               <input type="password" class="form-control" placeholder="Confirm Password *" value="" name="confirmpassword" required>
+          </div>
+        <br>
+        <br>
+        <a href="/login">Login Here</a>
+        <input type="submit" class="btnRegister" value="Register">
+       </div>
+   </div>
+   </form>
+ </body>
+  {{>bootstrapscripts}}
+  </html>
